@@ -7,16 +7,7 @@
 
 using namespace std;
 
-struct vertex {
-    bool isColored;
-    vector<int> possibleColors;
-    int row;
-    int column;
-    int *quadrant = new int[2];
-    int index;
-
-    LinkedList *connectTo = new LinkedList();
-};
+struct vertex;
 
 struct node {
     vertex *_vertex;
@@ -32,7 +23,7 @@ class LinkedList  {
     public:
         LinkedList();
         ~LinkedList();
-        void insertElement(vertex *vertex);
+        void insertElement(vertex *_vertex);
         vertex *getElementByPosition(int position);
         int size();
         void printList();

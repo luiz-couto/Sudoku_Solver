@@ -1,4 +1,5 @@
 #include "LinkedList.h"
+#include "Graph.h"
 #include <iostream>
 #include <sstream>
 
@@ -14,9 +15,9 @@ LinkedList::~LinkedList() {
 
 }
 
-void LinkedList::insertElement(vertex *vertex) {
+void LinkedList::insertElement(vertex *_vertex) {
     node *newNode = new node;
-    newNode->_vertex = vertex;
+    newNode->_vertex = _vertex;
 
     if(this->number_of_elements == 0) {
         newNode->prox = nullptr;

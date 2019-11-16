@@ -8,6 +8,17 @@
 
 using namespace std;
 
+struct vertex {
+    bool isColored;
+    vector<int> possibleColors;
+    int row;
+    int column;
+    int *quadrant = new int[2];
+    int index;
+
+    LinkedList *connectTo = new LinkedList();
+};
+
 class Graph {
     private:
         LinkedList *vertex_list;

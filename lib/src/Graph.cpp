@@ -11,6 +11,10 @@ Graph::Graph(int size, int quadrantRowSize, int quadrantColumnSize) {
     this->vertex_list = new LinkedList();
 }
 
+Graph::~Graph() {
+
+}
+
 void Graph::addVertex(bool isColored, int position, int color) {
     vertex *newVertex = new vertex;
     newVertex->index = position;
@@ -40,7 +44,7 @@ void Graph::addEdge(vertex *vertex1, vertex *vertex2) {
 
 void Graph::print_graph() {
     for (int i=0; i<this->size*this->size; i++) {
-        cout << i+1 << " | " ;
+        cout << i << " | " ;
         this->vertex_list->getElementByPosition(i)->connectTo->printList();
         cout << endl;
     }
