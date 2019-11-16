@@ -53,6 +53,18 @@ vertex *Graph::getVertex(int position) {
     return this->vertex_list->getElementByPosition(position);
 }
 
+void Graph::removeColor(int position, int color) {
+    vertex *currentVertex = this->getVertex(position);
+    int index = 0;
+    for (int i=0; i<currentVertex->possibleColors.size; i++) {
+        if (currentVertex->possibleColors[index] == color) {
+            break;
+        }
+        index++;
+    }
+    currentVertex->possibleColors.erase(currentVertex->possibleColors.begin()+index);
+}
+
 void Graph::print_graph() {
     for (int i=0; i<this->size*this->size; i++) {
         cout << i << " | " ;

@@ -28,5 +28,20 @@ int main(int argc, char **argv) {
 
     sudoku.print_graph();
 
+    for (int i=0; i<sudokuSize*sudokuSize; i++) {
+        vertex *vertexI = sudoku.getVertex(i);
+        for (int j=0; j<sudokuSize*sudokuSize; j++) {
+            if (i != j) {
+                vertex *vertexJ = sudoku.getVertex(j);
+                if (vertexI->row == vertexJ->row || vertexI->column == vertexJ->column || sudoku.verifyIfIsTheSameQuadrant(vertexI,vertexJ)) {
+                    sudoku.addEdge(i,j);
+                }
+            }
+        }
+    }
+
+    cout << endl << endl;
+    sudoku.print_graph();
+
     }
 }
