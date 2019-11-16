@@ -42,13 +42,15 @@ int main(int argc, char **argv) {
     cout << endl << endl;
     sudoku.printSudoku();
 
-    for (int i=0; i<sudokuSize*sudokuSize; i++) {
-        vertex *vertexI = sudoku.getVertex(i);
-        if (vertexI->possibleColors.size() == 1) {
-            for (int j=0; j<vertexI->connectTo->size(); j++) {
-                vertex *vertexJ = vertexI->connectTo->getElementByPosition(j);
-                if (vertexJ->possibleColors.size() > 1) {
-                    sudoku.removeColor(vertexJ->index, vertexI->possibleColors[0]);
+    while(!sudoku.everyVertexHasColor()){
+        for (int i=0; i<sudokuSize*sudokuSize; i++) {
+            vertex *vertexI = sudoku.getVertex(i);
+            if (vertexI->possibleColors.size() == 1) {
+                for (int j=0; j<vertexI->connectTo->size(); j++) {
+                    vertex *vertexJ = vertexI->connectTo->getElementByPosition(j);
+                    if (vertexJ->possibleColors.size() > 1) {
+                        sudoku.removeColor(vertexJ->index, vertexI->possibleColors[0]);
+                    }
                 }
             }
         }

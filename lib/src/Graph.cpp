@@ -68,6 +68,16 @@ void Graph::removeColor(int position, int color) {
         currentVertex->possibleColors.erase(currentVertex->possibleColors.begin()+index);
 }
 
+bool Graph::everyVertexHasColor() {
+    for (int i=0; i<this->size*this->size; i++) {
+        vertex *currentVertex = this->getVertex(i);
+        if (currentVertex->possibleColors.size() != 1) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void Graph::printSudoku() {
     int index = 0;
     for (int i=0; i<this->size; i++) {
