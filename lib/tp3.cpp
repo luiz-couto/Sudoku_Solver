@@ -23,10 +23,9 @@ int main(int argc, char **argv) {
 
     for (int i=0; i<sudokuSize*sudokuSize; i++) {
         file >> vertexColor;
-        sudoku.addVertex(i,(int)vertexColor);
+        int vertexColorInt = vertexColor - '0';
+        sudoku.addVertex(i,vertexColorInt);
     }
-
-    sudoku.print_graph();
 
     for (int i=0; i<sudokuSize*sudokuSize; i++) {
         vertex *vertexI = sudoku.getVertex(i);
@@ -35,6 +34,22 @@ int main(int argc, char **argv) {
                 vertex *vertexJ = sudoku.getVertex(j);
                 if (vertexI->row == vertexJ->row || vertexI->column == vertexJ->column || sudoku.verifyIfIsTheSameQuadrant(vertexI,vertexJ)) {
                     sudoku.addEdge(i,j);
+                }
+            }
+        }
+    }
+
+    cout << endl << endl;
+    sudoku.print_graph();
+
+    for (int i=0; i<sudokuSize*sudokuSize; i++) {
+        vertex *vertexI = sudoku.getVertex(i);
+        if (vertexI->possibleColors.size() == 1) {
+            for (int j=0; j<vertexI->connectTo->size(); j++) {
+                vertex *vertexJ = vertexI->connectTo->getElementByPosition(j);
+                if (vertexJ->possibleColors.size() > 1) {
+                    cout << vertexI->index << endl;
+                    sudoku.removeColor(vertexJ->index, vertexI->possibleColors[0]);
                 }
             }
         }

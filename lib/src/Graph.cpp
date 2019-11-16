@@ -55,14 +55,17 @@ vertex *Graph::getVertex(int position) {
 
 void Graph::removeColor(int position, int color) {
     vertex *currentVertex = this->getVertex(position);
+    bool colorIsAlreadyRemoved = true;
     int index = 0;
-    for (int i=0; i<currentVertex->possibleColors.size; i++) {
+    for (int i=0; i<currentVertex->possibleColors.size(); i++) {
         if (currentVertex->possibleColors[index] == color) {
+            colorIsAlreadyRemoved = false;
             break;
         }
         index++;
     }
-    currentVertex->possibleColors.erase(currentVertex->possibleColors.begin()+index);
+    if (!colorIsAlreadyRemoved)
+        currentVertex->possibleColors.erase(currentVertex->possibleColors.begin()+index);
 }
 
 void Graph::print_graph() {
