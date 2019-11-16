@@ -30,7 +30,7 @@ class Graph {
         Graph(int size, int quadrantRowSize, int quadrantColumnSize);
         ~Graph();
         vertex *getVertex(int position);
-        void addVertex(bool isColored, int position, int color);
+        void addVertex(int position, int color);
         void addEdge(int position1, int position2);
         bool verifyIfIsTheSameQuadrant(vertex *vertex1, vertex *vertex2);
         void print_graph(); //debug

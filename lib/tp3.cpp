@@ -8,29 +8,25 @@
 
 using namespace std;
 
-int main() {
-    Graph sudoku = Graph(4,2,2);
-    sudoku.addVertex(false,0,0);
-    sudoku.addVertex(true,1,4);
-    sudoku.addVertex(false,2,0);
-    sudoku.addVertex(true,3,1);
-    sudoku.addVertex(true,4,3);
-    sudoku.addVertex(false,5,0);
-    sudoku.addVertex(false,6,0);
-    sudoku.addVertex(false,7,0);
-    sudoku.addVertex(false,8,0);
-    sudoku.addVertex(false,9,0);
-    sudoku.addVertex(false,10,0);
-    sudoku.addVertex(true,11,4);
-    sudoku.addVertex(false,8,0);
-    sudoku.addVertex(false,9,0);
-    sudoku.addVertex(false,10,0);
-    sudoku.addVertex(false,11,0);
+int main(int argc, char **argv) {
+    if (argc < 2)
+        return 0;
+    
+    int sudokuSize, quadrantRowSize, quadrantColumnSize;
+    string line;
+    ifstream file(argv[1]);
+    if (file.is_open()) {
+    file >> sudokuSize >> quadrantColumnSize >> quadrantRowSize;
+    
+    Graph sudoku = Graph(sudokuSize,quadrantRowSize,quadrantColumnSize);
+    char vertexColor;
 
-    sudoku.addEdge(0,1);
-    sudoku.addEdge(0,2);
-    sudoku.addEdge(0,3);
+    for (int i=0; i<sudokuSize*sudokuSize; i++) {
+        file >> vertexColor;
+        sudoku.addVertex(i,(int)vertexColor);
+    }
 
     sudoku.print_graph();
-    cout << endl;
+
+    }
 }

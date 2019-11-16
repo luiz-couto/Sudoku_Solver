@@ -15,15 +15,20 @@ Graph::~Graph() {
 
 }
 
-void Graph::addVertex(bool isColored, int position, int color) {
+void Graph::addVertex(int position, int color) {
     vertex *newVertex = new vertex;
     newVertex->index = position;
     newVertex->column = position % this->size;
     newVertex->row = position / this->size;
-    newVertex->isColored = isColored;
 
-    if(isColored)
+    if(color != 0)
         newVertex->possibleColors.push_back(color);
+    else
+    {   
+        for (int i=1; i<=this->size; i++){
+            newVertex->possibleColors.push_back(i);
+        }
+    }
     
     newVertex->quadrant[0] = newVertex->row / this->quadrantRowSize;
     newVertex->quadrant[1] = newVertex->column / this->quadrantColumnSize;
