@@ -27,6 +27,10 @@ int main() {
     sudoku.addVertex(false,10,0);
     sudoku.addVertex(false,11,0);
 
+    sudoku.addEdge(0,1);
+    sudoku.addEdge(0,2);
+    sudoku.addEdge(0,3);
+
     sudoku.print_graph();
     cout << endl;
 }

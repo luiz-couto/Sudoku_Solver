@@ -38,8 +38,14 @@ bool Graph::verifyIfIsTheSameQuadrant(vertex *vertex1, vertex *vertex2) {
         return false;
 }
 
-void Graph::addEdge(vertex *vertex1, vertex *vertex2) {
-    this->vertex_list->getElementByPosition(vertex1->index)->connectTo->insertElement(vertex2);
+void Graph::addEdge(int position1, int position2) {
+    vertex *vertex1 = this->getVertex(position1);
+    vertex *vertex2 = this->getVertex(position2);
+    vertex1->connectTo->insertElement(vertex2);
+}
+
+vertex *Graph::getVertex(int position) {
+    return this->vertex_list->getElementByPosition(position);
 }
 
 void Graph::print_graph() {
