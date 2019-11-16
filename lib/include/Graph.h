@@ -34,6 +34,7 @@ class Graph {
         void addEdge(int position1, int position2);
         bool verifyIfIsTheSameQuadrant(vertex *vertex1, vertex *vertex2);
         void removeColor(int position, int color);
+        void printSudoku();
         void print_graph(); //debug
 };
 

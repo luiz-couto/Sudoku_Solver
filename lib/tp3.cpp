@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
     }
 
     cout << endl << endl;
-    sudoku.print_graph();
+    sudoku.printSudoku();
 
     for (int i=0; i<sudokuSize*sudokuSize; i++) {
         vertex *vertexI = sudoku.getVertex(i);
@@ -48,7 +48,6 @@ int main(int argc, char **argv) {
             for (int j=0; j<vertexI->connectTo->size(); j++) {
                 vertex *vertexJ = vertexI->connectTo->getElementByPosition(j);
                 if (vertexJ->possibleColors.size() > 1) {
-                    cout << vertexI->index << endl;
                     sudoku.removeColor(vertexJ->index, vertexI->possibleColors[0]);
                 }
             }
@@ -56,7 +55,7 @@ int main(int argc, char **argv) {
     }
 
     cout << endl << endl;
-    sudoku.print_graph();
+    sudoku.printSudoku();
 
     }
 }

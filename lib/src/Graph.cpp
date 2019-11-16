@@ -68,6 +68,22 @@ void Graph::removeColor(int position, int color) {
         currentVertex->possibleColors.erase(currentVertex->possibleColors.begin()+index);
 }
 
+void Graph::printSudoku() {
+    int index = 0;
+    for (int i=0; i<this->size; i++) {
+        for (int j=0; j<this->size; j++) {
+            vertex *currentVertex = this->getVertex(index);
+            if (currentVertex->possibleColors.size() == 1) {
+                cout << currentVertex->possibleColors[0];
+            } else {
+                cout << 0;
+            }
+            index++;
+        }
+        cout << endl;
+    }
+}
+
 void Graph::print_graph() {
     for (int i=0; i<this->size*this->size; i++) {
         cout << i << " | " ;
