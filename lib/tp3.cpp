@@ -41,6 +41,10 @@ int main(int argc, char **argv) {
 
     cout << endl << endl;
     sudoku.printSudoku();
+    cout << endl;
+
+    int noChangesCounter = 0;
+    bool removedColor;
 
     while(!sudoku.everyVertexHasColor()){
         for (int i=0; i<sudokuSize*sudokuSize; i++) {
@@ -49,14 +53,23 @@ int main(int argc, char **argv) {
                 for (int j=0; j<vertexI->connectTo->size(); j++) {
                     vertex *vertexJ = vertexI->connectTo->getElementByPosition(j);
                     if (vertexJ->possibleColors.size() > 1) {
-                        sudoku.removeColor(vertexJ->index, vertexI->possibleColors[0]);
+                        removedColor = sudoku.removeColor(vertexJ->index, vertexI->possibleColors[0]);
+                        if (removedColor)
+                            noChangesCounter = 0;
                     }
                 }
             }
         }
+        noChangesCounter++;
+        sudoku.printSudoku();
+        cout << endl;
+        if (noChangesCounter == 3) {
+            cout << "ENTROU AQUi" << endl;
+            break;
+        }
     }
 
-    cout << endl << endl;
+    cout << endl;
     sudoku.printSudoku();
 
     }

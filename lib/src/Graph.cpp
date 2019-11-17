@@ -53,7 +53,7 @@ vertex *Graph::getVertex(int position) {
     return this->vertex_list->getElementByPosition(position);
 }
 
-void Graph::removeColor(int position, int color) {
+bool Graph::removeColor(int position, int color) {
     vertex *currentVertex = this->getVertex(position);
     bool colorIsAlreadyRemoved = true;
     int index = 0;
@@ -64,8 +64,12 @@ void Graph::removeColor(int position, int color) {
         }
         index++;
     }
-    if (!colorIsAlreadyRemoved)
+    if (!colorIsAlreadyRemoved){
         currentVertex->possibleColors.erase(currentVertex->possibleColors.begin()+index);
+        return true;
+    }
+    else 
+        return false;
 }
 
 bool Graph::everyVertexHasColor() {
