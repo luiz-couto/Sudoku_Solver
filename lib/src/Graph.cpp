@@ -82,6 +82,25 @@ bool Graph::everyVertexHasColor() {
     return true;
 }
 
+vector<vector<int>> Graph::createCheckpoint() {
+
+    vector<vector<int>> checkPoint;
+
+    for (int i=0; i<this->size*this->size; i++) {
+        vertex *currentVertex = this->getVertex(i);
+        checkPoint.push_back(currentVertex->possibleColors);
+    }
+
+    return checkPoint;
+}
+
+void Graph::returnToCheckpoint(vector<vector<int>> checkPoint) {
+    for(int i=0; i<this->size*this->size; i++) {
+        vertex *currentVertex = this->getVertex(i);
+        currentVertex->possibleColors = checkPoint[i];
+    }
+}
+
 void Graph::printSudoku() {
     int index = 0;
     for (int i=0; i<this->size; i++) {

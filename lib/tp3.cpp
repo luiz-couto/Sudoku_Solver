@@ -20,7 +20,7 @@ void runSudoku(Graph *sudoku, int sudokuSize) {
             if (vertexI->possibleColors.size() == 1) {
                 for (int j=0; j<vertexI->connectTo->size(); j++) {
                     vertex *vertexJ = vertexI->connectTo->getElementByPosition(j);
-                    if (vertexJ->possibleColors.size() > 1) {
+                    if (vertexJ->possibleColors.size() >= 1) {
                         removedColor = sudoku->removeColor(vertexJ->index, vertexI->possibleColors[0]);
                         if (removedColor)
                             noChangesCounter = 0;
@@ -29,8 +29,8 @@ void runSudoku(Graph *sudoku, int sudokuSize) {
             }
         }
         noChangesCounter++;
-        sudoku->printSudoku();
-        cout << endl;
+        // sudoku->printSudoku();
+        // cout << endl;
         if (noChangesCounter == 3) {
             break;
         }
@@ -50,12 +50,14 @@ int main(int argc, char **argv) {
     Graph sudoku = Graph(sudokuSize,quadrantRowSize,quadrantColumnSize);
     char vertexColor;
 
+    // Add vertices to graph
     for (int i=0; i<sudokuSize*sudokuSize; i++) {
         file >> vertexColor;
         int vertexColorInt = vertexColor - '0';
         sudoku.addVertex(i,vertexColorInt);
     }
 
+    // Add edges between vertices that can't be the same color
     for (int i=0; i<sudokuSize*sudokuSize; i++) {
         vertex *vertexI = sudoku.getVertex(i);
         for (int j=0; j<sudokuSize*sudokuSize; j++) {
@@ -68,22 +70,25 @@ int main(int argc, char **argv) {
         }
     }
 
-    cout << endl << endl;
-    sudoku.printSudoku();
-    cout << endl;
+    // cout << endl << endl;
+    // sudoku.printSudoku();
+    // cout << endl;
 
     runSudoku(&sudoku, sudokuSize);
-    
 
     if (sudoku.everyVertexHasColor()){
-        cout << endl;
+        cout << "solução" << endl;
         sudoku.printSudoku();
         return 0;
     }
 
+    cout << endl << endl;
+    sudoku.printSudoku();
+    cout << endl;
+
     cout << "STILL WITHOUT SOLUTION..... RUNNING BACKTRACKING....." << endl << endl;
     
-    Graph memory = sudoku;
+    vector<vector<int>> checkPoint = sudoku.createCheckpoint();
     bool foundSolution = false;
 
     for(int i=0; i<sudokuSize*sudokuSize; i++) {
@@ -98,7 +103,7 @@ int main(int argc, char **argv) {
                     foundSolution = true;
                     break;
                 } else {
-                    sudoku = memory;
+                    sudoku.returnToCheckpoint(checkPoint);
                 }
             }
         }
@@ -107,9 +112,15 @@ int main(int argc, char **argv) {
         }
     }
 
-    cout << endl;
+    if (sudoku.everyVertexHasColor()){
+        cout << "solução" << endl;
+        sudoku.printSudoku();
+        return 0;
+    }
+
+    cout << "sem solução" << endl;
     sudoku.printSudoku();
     return 0;
-    
+
     }
 }

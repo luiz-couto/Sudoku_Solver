@@ -35,6 +35,8 @@ class Graph {
         bool verifyIfIsTheSameQuadrant(vertex *vertex1, vertex *vertex2);
         bool removeColor(int position, int color);
         bool everyVertexHasColor();
+        vector<vector<int>> createCheckpoint();
+        void returnToCheckpoint(vector<vector<int>> checkPoint);
         void printSudoku();
         void print_graph(); //debug
 };
