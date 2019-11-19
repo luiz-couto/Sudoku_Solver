@@ -107,9 +107,9 @@ void Graph::printSudoku() {
         for (int j=0; j<this->size; j++) {
             vertex *currentVertex = this->getVertex(index);
             if (currentVertex->possibleColors.size() == 1) {
-                cout << currentVertex->possibleColors[0];
+                cout << currentVertex->possibleColors[0] << " ";
             } else {
-                cout << 0;
+                cout << 0 << " ";
             }
             index++;
         }
