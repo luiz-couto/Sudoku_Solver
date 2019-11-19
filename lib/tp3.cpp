@@ -82,11 +82,11 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    cout << endl << endl;
-    sudoku.printSudoku();
-    cout << endl;
+    // cout << endl << endl;
+    // sudoku.printSudoku();
+    // cout << endl;
 
-    cout << "STILL WITHOUT SOLUTION..... RUNNING BACKTRACKING....." << endl << endl;
+    // cout << "STILL WITHOUT SOLUTION..... RUNNING BACKTRACKING....." << endl << endl;
     
     vector<vector<int>> checkPoint = sudoku.createCheckpoint();
     bool foundSolution = false;
