@@ -9,7 +9,6 @@
 using namespace std;
 
 struct vertex {
-    bool isColored;
     vector<int> possibleColors;
     int row;
     int column;

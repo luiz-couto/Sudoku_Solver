@@ -29,8 +29,6 @@ void runSudoku(Graph *sudoku, int sudokuSize) {
             }
         }
         noChangesCounter++;
-        // sudoku->printSudoku();
-        // cout << endl;
         if (noChangesCounter == 3) {
             break;
         }
@@ -70,10 +68,6 @@ int main(int argc, char **argv) {
         }
     }
 
-    // cout << endl << endl;
-    // sudoku.printSudoku();
-    // cout << endl;
-
     runSudoku(&sudoku, sudokuSize);
 
     if (sudoku.everyVertexHasColor()){
@@ -81,12 +75,6 @@ int main(int argc, char **argv) {
         sudoku.printSudoku();
         return 0;
     }
-
-    cout << endl << endl;
-    sudoku.printSudoku();
-    cout << endl;
-
-    cout << "STILL WITHOUT SOLUTION..... RUNNING BACKTRACKING....." << endl << endl;
     
     vector<vector<int>> checkPoint = sudoku.createCheckpoint();
     bool foundSolution = false;
